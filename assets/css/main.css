@@ -12,29 +12,41 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Ubuntu",  sans-serif;
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Ubuntu", sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #5f687b; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #10bc69; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+:root {
+  --background-color: #ffffff;
+  /* Background color for the entire website, including individual sections */
+  --default-color: #444444;
+  /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #5f687b;
+  /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #232162;
+  /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff;
+  /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff;
+  /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #5f687b;  /* The default color of the main navmenu links */
-  --nav-hover-color: #10bc69; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #5f687b; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #10bc69; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #5f687b;
+  /* The default color of the main navmenu links */
+  --nav-hover-color: #232162;
+  /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff;
+  /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff;
+  /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #5f687b;
+  /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #232162;
+  /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -53,7 +65,7 @@
 }
 
 .accent-background {
-  --background-color: #10bc69;
+  --background-color: #232162;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   --surface-color: #14eb83;
@@ -875,21 +887,22 @@ section,
   width: 100%;
   min-height: 70vh;
   position: relative;
-  padding: 120px 0 60px 0;
+  padding: 0px 0 60px 0;
   display: flex;
   align-items: center;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
+  font-size: 55px;
+  font-weight: 750;
+  line-height: 63px;
+  color: var(--accent-color)
 }
 
 .hero p {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
-  margin: 5px 0 30px 0;
+  margin: 30px 0 30px 0;
   font-size: 20px;
   font-weight: 400;
 }
@@ -899,7 +912,7 @@ section,
   background: var(--accent-color);
   font-family: var(--heading-font);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 19px;
   letter-spacing: 1px;
   display: inline-block;
   padding: 10px 28px 12px 28px;
@@ -1753,4 +1766,55 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+.service-item {
+  background: var(--surface-color, #ffffff);
+  padding: 24px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.6s ease-in-out,
+    box-shadow 0.6s ease-in-out;
+  transform: scale(1);
+  /* задаваме начална стойност */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.service-item:hover {
+  transform: scale(1.015);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+}
+
+.service-item .icon {
+  font-size: 36px;
+  color: #0d6efd;
+  margin-bottom: 16px;
+  transition: color 0.4s ease;
+}
+
+.service-item:hover .icon {
+  color: #0a58ca;
+}
+
+.service-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.service-item p {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.bi-check2-all:before {
+  color: #02b902;
 }
