@@ -1,41 +1,52 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $first_name = trim($_POST['first_name']);
+    $last_name = trim($_POST['last_name']);
+    $email = trim($_POST['email']);
+    $phone = trim($_POST['phone']);
+    $message = trim($_POST['message']);
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($message)) {
+        http_response_code(400);
+        echo "Моля, попълнете всички полета.";
+        exit;
+    }
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo "Невалиден имейл адрес.";
+        exit;
+    }
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+    // Изчистване на данните от HTML опасни символи (ако се използват някъде повторно)
+    $first_name = htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8');
+    $last_name = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
+    $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
+    $to = "programmingclub25@gmail.com";
+    $subject = "Нов контакт от сайта";
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+    $email_content = "Име: $first_name $last_name\n";
+    $email_content .= "Имейл: $email\n";
+    $email_content .= "Телефон: $phone\n\n";
+    $email_content .= "Съобщение:\n$message\n";
 
-  echo $contact->send();
+    $headers = "From: programmingclub25@gmail.com\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+    if (mail($to, $subject, $email_content, $headers)) {
+        http_response_code(200);
+        echo "Вашето съобщение беше изпратено успешно.";
+        exit;
+    } else {
+        http_response_code(500);
+        echo "Възникна грешка при изпращане на съобщението.";
+        exit;
+    }
+} else {
+    http_response_code(403);
+    echo "Грешен метод на заявката.";
+    exit;
+}
 ?>
