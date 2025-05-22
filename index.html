@@ -79,7 +79,7 @@
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="100">
-            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+            <img src="./assets/img/hero-img.png" class="img-fluid animated" alt="">
           </div>
         </div>
       </div>
@@ -319,36 +319,42 @@
           </div>
 
 <div class="col-lg-7">
-  <form action="forms/contact.php" method="post" class="php-email-form">
-    <div class="row g-3">
+  <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+    <div class="row gy-4">
+
       <div class="col-md-6">
-        <label for="name-field" class="form-label">Име</label>
+        <label for="name-field" class="pb-2">Име</label>
         <input type="text" name="first_name" id="name-field" class="form-control" required autocomplete="given-name">
       </div>
 
       <div class="col-md-6">
-        <label for="surname-field" class="form-label">Фамилия</label>
+        <label for="surname-field" class="pb-2">Фамилия</label>
         <input type="text" name="last_name" id="surname-field" class="form-control" required autocomplete="family-name">
       </div>
 
       <div class="col-md-6">
-        <label for="email-field" class="form-label">Имейл</label>
-        <input type="email" name="email" id="email-field" class="form-control" required autocomplete="email">
+        <label for="email-field" class="pb-2">Имейл</label>
+       <input type="email" name="email" id="email-field" class="form-control" required autocomplete="email">
       </div>
 
       <div class="col-md-6">
-        <label for="phone-field" class="form-label">Телефон</label>
-        <input type="tel" name="phone" id="phone-field" class="form-control" required autocomplete="tel">
+        <label for="phone-field" class="pb-2">Телефон</label>
+        <<input type="tel" name="phone" id="phone-field" class="form-control" required autocomplete="tel">
       </div>
 
       <div class="col-md-12">
-        <label for="message-field" class="form-label">Съобщение</label>
-        <textarea class="form-control" name="message" rows="6" id="message-field" required></textarea>
+        <label for="message-field" class="pb-2">Съобщение</label>
+        <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
       </div>
 
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Изпрати</button>
+      <div class="col-md-12 text-center">
+        <div class="loading" style="display:none;">Loading</div>
+        <div class="error-message" style="color:red;"></div>
+        <div class="sent-message" style="color:green; display:none;">Your message has been sent. Thank you!</div>
+
+        <button type="submit">Изпрати!</button>
       </div>
+
     </div>
   </form>
 </div>
