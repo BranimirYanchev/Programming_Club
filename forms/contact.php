@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $last_name  = trim($_POST['last_name'] ?? '');
     $email      = trim($_POST['email'] ?? '');
     $phone      = trim($_POST['phone'] ?? '');
-    $message    = trim($_POST['message'] ?? '');
+    $message    = trim($_POST['message'] ?? '');a
 
     // Валидация
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($message)) {
