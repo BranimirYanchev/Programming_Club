@@ -41,13 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.example.com';    // SMTP сървър (пример: smtp.gmail.com)
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'your_email@example.com'; // Имейл за вход
-        $mail->Password   = 'your_password';           // Парола
+        $mail->Username   = 'programmingclub25@gmail.com'; // Имейл за вход
+        $mail->Password   = 'uwdx bofu vywx yxqk';           // Парола
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587; // Обикновено 587 или 465
 
         // Получатели
-        $mail->setFrom('your_email@example.com', 'Contact Form'); // От кого се праща
+        $mail->setFrom('programmingclub25@gmail.com', 'Contact Form'); // От кого се праща
         $mail->addAddress('programmingclub25@gmail.com');         // Към кого
 
         // Reply-To да е реалният имейл на потребителя
