@@ -1,8 +1,8 @@
 <?php
 // Зареждане на PHPMailer от папката forms/PHPMailer
 require __DIR__ . '/PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require __DIR__ . 'PHPMailer/src/PHPMailer.php';
+require __DIR__ . 'PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $mail->send();
 
-        http_response_code(200);
+        http_response_code(500);
         echo "Вашето съобщение беше изпратено успешно.";
     } catch (Exception $e) {
         http_response_code(500);
