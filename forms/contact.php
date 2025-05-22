@@ -1,8 +1,8 @@
 <?php
 // Зареждане на PHPMailer от папката forms/PHPMailer
-require __DIR__ . './PHPMailer/src/Exception.php';
-require __DIR__ . './PHPMailer/src/PHPMailer.php';
-require __DIR__ . './PHPMailer/src/SMTP.php';
+require './PHPMailer/src/Exception.php';
+require './PHPMailer/src/PHPMailer.php';
+require './PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
