@@ -7,7 +7,6 @@ require __DIR__ . '/PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $first_name = trim($_POST['first_name'] ?? '');
     $last_name  = trim($_POST['last_name'] ?? '');
     $email      = trim($_POST['email'] ?? '');
@@ -58,12 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $mail->send();
 
+        http_response_code(200);
         echo "Вашето съобщение беше изпратено успешно.";
     } catch (Exception $e) {
         http_response_code(500);
         echo "Грешка при изпращане: {$mail->ErrorInfo}";
     }
-} else {
-    http_response_code(403);
-    echo "Недопустим метод на заявката.";
-}
