@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $last_name  = trim($_POST['last_name'] ?? '');
     $email      = trim($_POST['email'] ?? '');
     $phone      = trim($_POST['phone'] ?? '');
-    $message    = trim($_POST['message'] ?? '');a
+    $message    = trim($_POST['message'] ?? '');
 
     // Валидация
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($message)) {
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $mail->send();
 
-        http_response_code(500);
+        http_response_code(200);
         echo "Вашето съобщение беше изпратено успешно.";
     } catch (Exception $e) {
         http_response_code(500);
