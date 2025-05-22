@@ -58,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $mail->send();
 
-        http_response_code(200);
         echo "Вашето съобщение беше изпратено успешно.";
     } catch (Exception $e) {
         http_response_code(500);
