@@ -1,7 +1,8 @@
 <?php
-require __DIR__ . '/../Programming_Club/PHPMailer/src/Exception.php';
-require __DIR__ . '/../Programming_Club/PHPMailer/src/PHPMailer.php';
-require __DIR__ . '/../Programming_Club/PHPMailer/src/SMTP.php';
+// Пътища към PHPMailer класовете
+require __DIR__ . '/PHPMailer/src/Exception.php';
+require __DIR__ . '/PHPMailer/src/PHPMailer.php';
+require __DIR__ . '/PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -25,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
+    // Изчистване
     $first_name = htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8');
     $last_name = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
     $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
@@ -35,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'programmingclub25@gmail.com';        // ❗ТВОЯТ ИМЕЙЛ
-        $mail->Password   = 'uwdx bofu vywx yxqk';           // ❗APP PASSWORD от Google
+        $mail->Username   = 'programmingclub25@gmail.com';  // Твой Gmail
+        $mail->Password   = 'uwdx bofu vywx yxqk';                 // Твоя App Password (НЕ паролата на имейла)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
