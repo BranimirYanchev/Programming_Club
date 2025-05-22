@@ -1,5 +1,4 @@
 <?php
-// Ако не ползваш Composer, сложи пътищата до класовете на PHPMailer правилно.
 require __DIR__ . '/../PHPMailer/src/Exception.php';
 require __DIR__ . '/../PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/../PHPMailer/src/SMTP.php';
@@ -7,29 +6,25 @@ require __DIR__ . '/../PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Вземаме данните
-    $first_name = trim($_POST['first_name']);
-    $last_name = trim($_POST['last_name']);
-    $email = trim($_POST['email']);
-    $phone = trim($_POST['phone']);
-    $message = trim($_POST['message']);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $first_name = trim($_POST['first_name'] ?? '');
+    $last_name = trim($_POST['last_name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+    $message = trim($_POST['message'] ?? '');
 
-    // Проверка за празни полета
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($message)) {
         http_response_code(400);
         echo "Моля, попълнете всички полета.";
         exit;
     }
 
-    // Проверка за валиден имейл
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         http_response_code(400);
         echo "Невалиден имейл адрес.";
         exit;
     }
 
-    // Изчистване на HTML специални символи (за по-сигурно)
     $first_name = htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8');
     $last_name = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
     $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
@@ -37,24 +32,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = new PHPMailer(true);
 
     try {
-        // SMTP настройки - настрой ги според твоя хостинг или имейл доставчик
         $mail->isSMTP();
-        $mail->Host       = 'smtp.example.com';    // SMTP сървър (пример: smtp.gmail.com)
+        $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'programmingclub25@gmail.com'; // Имейл за вход
-        $mail->Password   = 'uwdx bofu vywx yxqk';           // Парола
+        $mail->Username   = 'programmingclub25@gmail.com';        // ❗ТВОЯТ ИМЕЙЛ
+        $mail->Password   = 'uwdx bofu vywx yxqk';           // ❗APP PASSWORD от Google
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587; // Обикновено 587 или 465
+        $mail->Port       = 587;
 
-        // Получатели
-        $mail->setFrom('programmingclub25@gmail.com', 'Contact Form'); // От кого се праща
-        $mail->addAddress('programmingclub25@gmail.com');         // Към кого
-
-        // Reply-To да е реалният имейл на потребителя
+        $mail->setFrom('programmingclub25@gmail.com', 'Contact Form');
+        $mail->addAddress('programmingclub25@gmail.com');
         $mail->addReplyTo($email, "$first_name $last_name");
 
-        // Съдържание
-        $mail->Subject = 'Нов контакт от сайта';
+        $mail->Subject = 'Ново съобщение от сайта';
         $mail->Body    = "Име: $first_name $last_name\nИмейл: $email\nТелефон: $phone\n\nСъобщение:\n$message";
 
         $mail->send();
@@ -63,10 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Вашето съобщение беше изпратено успешно.";
     } catch (Exception $e) {
         http_response_code(500);
-        echo "Съобщението не може да бъде изпратено. Грешка: {$mail->ErrorInfo}";
+        echo "Грешка при изпращане: {$mail->ErrorInfo}";
     }
 } else {
     http_response_code(403);
-    echo "Грешен метод на заявката.";
+    echo "Недопустим метод на заявката.";
 }
-?>
