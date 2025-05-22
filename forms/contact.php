@@ -44,6 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
+        // Задаване на кодировка за кирилица
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
+
         // Имейл параметри
         $mail->setFrom('programmingclub25@gmail.com', 'Contact Form');
         $mail->addAddress('programmingclub25@gmail.com');
