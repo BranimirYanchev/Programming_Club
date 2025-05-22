@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->addAddress('programmingclub25@gmail.com');
         $mail->addReplyTo($email, "$first_name $last_name");
 
-        $mail->Subject = 'Ново съобщение от сайта';
+        $mail->Subject = 'New messages';
         $mail->Body    = "Име: $first_name $last_name\nИмейл: $email\nТелефон: $phone\n\nСъобщение:\n$message";
 
         $mail->send();
