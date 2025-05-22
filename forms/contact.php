@@ -1,8 +1,8 @@
 <?php
 // Тъй като сме сложили PHPMailer вътре в forms/PHPMailer, използвай пътеви относителен път спрямо contact.php:
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require 'Programming_Club/PHPMailer/src/Exception.php';
+require 'Programming_Club/PHPMailer/src/PHPMailer.php';
+require 'Programming_Club/PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
