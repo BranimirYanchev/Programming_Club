@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . '../Programming_Club/PHPMailer/src/Exception.php';
-require __DIR__ . '../PHPMailer/src/PHPMailer.php';
-require __DIR__ . '../PHPMailer/src/SMTP.php';
+require __DIR__ . '../var/www/html/Programming_Club/PHPMailer/src/Exception.php';
+require __DIR__ . '../var/www/html/Programming_Club/PHPMailer/src/PHPMailer.php';
+require __DIR__ . '../var/www/html/Programming_Club/PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
