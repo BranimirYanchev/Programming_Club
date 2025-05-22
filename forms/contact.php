@@ -1,5 +1,5 @@
 <?php
-// Пътища към PHPMailer класовете
+// Тъй като сме сложили PHPMailer вътре в forms/PHPMailer, използвай пътеви относителен път спрямо contact.php:
 require __DIR__ . '/PHPMailer/src/Exception.php';
 require __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/PHPMailer/src/SMTP.php';
@@ -8,11 +8,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Вземаме данните от формата
     $first_name = trim($_POST['first_name'] ?? '');
-    $last_name = trim($_POST['last_name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $phone = trim($_POST['phone'] ?? '');
-    $message = trim($_POST['message'] ?? '');
+    $last_name  = trim($_POST['last_name'] ?? '');
+    $email      = trim($_POST['email'] ?? '');
+    $phone      = trim($_POST['phone'] ?? '');
+    $message    = trim($_POST['message'] ?? '');
 
     if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($message)) {
         http_response_code(400);
@@ -26,24 +27,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    // Изчистване
+    // Изчистване на HTML специални символи за сигурност:
     $first_name = htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8');
-    $last_name = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
-    $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+    $last_name  = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
+    $message    = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
     $mail = new PHPMailer(true);
 
     try {
+        // Настройки за SMTP чрез Gmail
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'programmingclub25@gmail.com';  // Твой Gmail
-        $mail->Password   = 'uwdx bofu vywx yxqk';                 // Твоя App Password (НЕ паролата на имейла)
+        $mail->Username   = 'programmingclub25@gmail.com';  // Твоят Gmail
+        $mail->Password   = 'APP_PASSWORD';                   // Твоята App Password (генерирана от Google)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
         $mail->setFrom('programmingclub25@gmail.com', 'Contact Form');
-        $mail->addAddress('programmingclub25@gmail.com');
+        $mail->addAddress('programmingclub25@gmail.com'); // Изпращане към същия имейл, може да го промениш
         $mail->addReplyTo($email, "$first_name $last_name");
 
         $mail->Subject = 'Ново съобщение от сайта';
