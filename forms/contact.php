@@ -58,7 +58,7 @@ use PHPMailer\PHPMailer\Exception;
         $mail->send();
 
         http_response_code(200);
-        echo "Вашето съобщение беше изпратено успешно.";
+        echo "OK"; 
     } catch (Exception $e) {
         http_response_code(500);
         echo "Грешка при изпращане: {$mail->ErrorInfo}";
