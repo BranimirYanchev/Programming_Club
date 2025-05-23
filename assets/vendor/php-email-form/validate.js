@@ -50,6 +50,7 @@
   });
 
   function php_email_form_submit(thisForm, action, formData) {
+    // validateData(formData.email, formData.phone);
     fetch(action, {
       method: 'POST',
       body: formData,
@@ -80,6 +81,21 @@
     thisForm.querySelector('.loading').classList.remove('d-block');
     thisForm.querySelector('.error-message').innerHTML = error;
     thisForm.querySelector('.error-message').classList.add('d-block');
+  }
+
+  function validateData(email, phone) {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let phoneRegex = /^[\d\s\+\-\(\)]{7,20}$/;
+
+    if (!emailRegex.test(email)) {
+      displayError(thisForm, 'Моля, въведете валиден имейл адрес.');
+      return;
+    }
+
+    if (!phoneRegex.test(phone)) {
+      displayError(thisForm, 'Моля, въведете валиден телефонен номер.');
+      return;
+    }  
   }
 
 })();

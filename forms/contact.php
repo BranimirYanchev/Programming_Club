@@ -47,6 +47,18 @@ use PHPMailer\PHPMailer\Exception;
         $mail->CharSet = 'UTF-8';
         $mail->Encoding = 'base64';
 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            http_response_code(400);
+            echo "Невалиден имейл адрес.";
+            exit;
+        }
+        
+        if (!preg_match('/^[\d\s\+\-\(\)]{7,20}$/', $phone)) {
+            http_response_code(400);
+            echo "Невалиден телефонен номер.";
+            exit;
+        }        
+
         // Имейл параметри
         $mail->setFrom('programmingclub25@gmail.com', 'Contact Form');
         $mail->addAddress('programmingclub25@gmail.com');
