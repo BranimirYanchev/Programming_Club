@@ -1,5 +1,4 @@
 <?php
-// Зареждане на PHPMailer от папката forms/PHPMailer
 require __DIR__ . '/PHPMailer/src/Exception.php';
 require __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/PHPMailer/src/SMTP.php';
@@ -7,71 +6,99 @@ require __DIR__ . '/PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-    $first_name = trim($_POST['first_name'] ?? '');
-    $last_name  = trim($_POST['last_name'] ?? '');
-    $email      = trim($_POST['email'] ?? '');
-    $phone      = trim($_POST['phone'] ?? '');
-    $message    = trim($_POST['message'] ?? '');
+$first_name = trim($_POST['first_name'] ?? '');
+$last_name  = trim($_POST['last_name'] ?? '');
+$email      = trim($_POST['email'] ?? '');
+$phone      = trim($_POST['phone'] ?? '');
+$message    = trim($_POST['message'] ?? '');
 
-    // Валидация
-    if (empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($message)) {
-        http_response_code(400);
-        echo "Моля, попълнете всички полета.";
-        exit;
-    }
+// Проверка за задължителни полета
+if (
+    $first_name === '' ||
+    $last_name === '' ||
+    $email === '' ||
+    $phone === '' ||
+    $message === ''
+) {
+    http_response_code(400);
+    echo "Всички полета са задължителни.";
+    exit;
+}
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        http_response_code(400);
-        echo "Невалиден имейл адрес.";
-        exit;
-    }
+// Имейл валидация (като в JS)
+if (!preg_match('/^[^@\s]+@[^@\s]+\.[^@\s]+$/', $email)) {
+    http_response_code(400);
+    echo "Имейл адресът изглежда невалиден или не съществува.";
+    exit;
+}
 
-    // Безопасност
-    $first_name = htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8');
-    $last_name  = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
-    $message    = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+// Телефон валидация
+if (!preg_match('/^[\d\s\+\-\(\)]{7,20}$/', $phone)) {
+    http_response_code(400);
+    echo "Моля, въведете валиден телефонен номер.";
+    exit;
+}
 
-    $mail = new PHPMailer(true);
+// Ескейпване
+$first_name = htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8');
+$last_name  = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
+$message    = nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')); // nl2br за нови редове
 
-    try {
-        // Настройки на Gmail SMTP
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'programmingclub25@gmail.com';
-        $mail->Password   = 'uwdx bofu vywx yxqk'; // App Password от Google
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
+$mail = new PHPMailer(true);
 
-        // Задаване на кодировка за кирилица
-        $mail->CharSet = 'UTF-8';
-        $mail->Encoding = 'base64';
+try {
+    // SMTP конфигурация
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'programmingclub25@gmail.com';
+    $mail->Password   = 'uwdx bofu vywx yxqk'; // App Password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = 587;
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            http_response_code(400);
-            echo "Невалиден имейл адрес.";
-            exit;
-        }
-        
-        if (!preg_match('/^[\d\s\+\-\(\)]{7,20}$/', $phone)) {
-            http_response_code(400);
-            echo "Невалиден телефонен номер.";
-            exit;
-        }        
+    // Кодировка
+    $mail->CharSet = 'UTF-8';
+    $mail->Encoding = 'base64';
+    $mail->isHTML(true);
 
-        // Имейл параметри
-        $mail->setFrom('programmingclub25@gmail.com', 'Contact Form');
-        $mail->addAddress('programmingclub25@gmail.com');
-        $mail->addReplyTo($email, "$first_name $last_name");
+    // Получатели
+    $mail->setFrom('programmingclub25@gmail.com', 'Форма за контакт');
+    $mail->addAddress('programmingclub25@gmail.com');
+    $mail->addReplyTo($email, "$first_name $last_name");
 
-        $mail->Subject = 'Ново съобщение от сайта';
-        $mail->Body    = "Име: $first_name $last_name\nИмейл: $email\nТелефон: $phone\n\nСъобщение:\n$message";
+    // Имейл съдържание (HTML)
+    $mail->Subject = 'Ново съобщение от сайта';
+    $mail->Body = "
+      <div style=\"background-color: #232162; color: #fff; padding: 20px; font-family: Arial, sans-serif; border-radius: 8px;\">
+        <h2 style=\"margin-top: 0;\">Ново съобщение от сайта</h2>
+        <p><strong>Име:</strong> $first_name $last_name</p>
+        <p><strong>Имейл:</strong> $email</p>
+        <p><strong>Телефон:</strong> $phone</p>
+        <p><strong>Съобщение:</strong><br>$message</p>
+        <hr style=\"border-color: #fff; margin: 20px 0;\">
+        <a href=\"https://programming-club-php.onrender.com\" 
+           style=\"
+             display: inline-block;
+             background-color: #fff;
+             color: #232162;
+             padding: 12px 20px;
+             border-radius: 6px;
+             text-decoration: none;
+             font-weight: bold;
+           \"
+        >
+          Посети сайта
+        </a>
+      </div>
+    ";
 
-        $mail->send();
+    $mail->AltBody = "Име: $first_name $last_name\nИмейл: $email\nТелефон: $phone\n\nСъобщение:\n$message";
 
-        http_response_code(200);
-        echo "OK"; 
-    } catch (Exception $e) {
-        http_response_code(500);
-        echo "Грешка при изпращане: {$mail->ErrorInfo}";
-    }
+    $mail->send();
+
+    http_response_code(200);
+    echo "Вашето съобщение беше изпратено успешно!";
+} catch (Exception $e) {
+    http_response_code(500);
+    echo "Възникна грешка при изпращането. Моля, опитайте отново по-късно.";
+}

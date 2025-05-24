@@ -50,7 +50,9 @@
   });
 
   function php_email_form_submit(thisForm, action, formData) {
-    // validateData(formData.email, formData.phone);
+    if(!validateData(formData, thisForm)){
+      return false;
+    };
     fetch(action, {
       method: 'POST',
       body: formData,
@@ -83,19 +85,46 @@
     thisForm.querySelector('.error-message').classList.add('d-block');
   }
 
-  function validateData(email, phone) {
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function validateData(formData, thisForm) {
+    let emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
     let phoneRegex = /^[\d\s\+\-\(\)]{7,20}$/;
-
+  
+    // Проверка за празни полета
+    for (let [key, value] of formData.entries()) {
+      if (!value || value.trim() === '') {
+        displayError(thisForm, `Полето "${getFieldLabel(key)}" е задължително.`);
+        return false;
+      }
+    }
+  
+    // Имейл
+    const email = formData.get('email');
     if (!emailRegex.test(email)) {
       displayError(thisForm, 'Моля, въведете валиден имейл адрес.');
-      return;
+      return false;
     }
-
+  
+    // Телефон
+    const phone = formData.get('phone');
     if (!phoneRegex.test(phone)) {
       displayError(thisForm, 'Моля, въведете валиден телефонен номер.');
-      return;
-    }  
+      return false;
+    }
+  
+    return true;
   }
+  
+  // Хелпър функция за разбираемо име на полето
+  function getFieldLabel(fieldName) {
+    const labels = {
+      first_name: 'Име',
+      last_name: 'Фамилия',
+      email: 'Имейл',
+      phone: 'Телефон',
+      message: 'Съобщение'
+    };
+    return labels[fieldName] || fieldName;
+  }
+  
 
 })();
