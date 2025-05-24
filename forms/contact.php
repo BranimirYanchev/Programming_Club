@@ -69,35 +69,36 @@ try {
     // Имейл съдържание (HTML)
     $mail->Subject = 'Ново съобщение от сайта';
     $mail->Body = "
-      <div style=\"background-color: #232162; color: #fff; padding: 20px; font-family: Arial, sans-serif; border-radius: 8px;\">
-        <h2 style=\"margin-top: 0;\">Ново съобщение от сайта</h2>
-        <p><strong>Име:</strong> $first_name $last_name</p>
-        <p><strong>Имейл:</strong> $email</p>
-        <p><strong>Телефон:</strong> $phone</p>
-        <p><strong>Съобщение:</strong><br>$message</p>
-        <hr style=\"border-color: #fff; margin: 20px 0;\">
-        <a href=\"https://programming-club-php.onrender.com\" 
-           style=\"
-             display: inline-block;
-             background-color: #fff;
-             color: #232162;
-             padding: 12px 20px;
-             border-radius: 6px;
-             text-decoration: none;
-             font-weight: bold;
-           \"
-        >
-          Посети сайта
-        </a>
-      </div>
-    ";
+    <div style=\"background-color: #fff; color: #232162; padding: 20px; font-family: Arial, sans-serif; border-radius: 8px;\">
+      <h2 style=\"margin-top: 0;\">Ново съобщение от сайта</h2>
+      <p><strong>Име:</strong> $first_name $last_name</p>
+      <p><strong>Имейл:</strong> $email</p>
+      <p><strong>Телефон:</strong> $phone</p>
+      <p><strong>Съобщение:</strong><br>$message</p>
+      <hr style=\"border-color: #232162; margin: 20px 0;\">
+      <a href=\"https://programming-club-php.onrender.com\" 
+         style=\"
+           display: inline-block;
+           background-color: #232162;
+           color: #fff;
+           padding: 12px 20px;
+           border-radius: 6px;
+           text-decoration: none;
+           font-weight: bold;
+         \"
+      >
+        Посети сайта
+      </a>
+    </div>
+  ";
+  
 
     $mail->AltBody = "Име: $first_name $last_name\nИмейл: $email\nТелефон: $phone\n\nСъобщение:\n$message";
 
     $mail->send();
 
     http_response_code(200);
-    echo "Вашето съобщение беше изпратено успешно!";
+    echo "OK"; 
 } catch (Exception $e) {
     http_response_code(500);
     echo "Възникна грешка при изпращането. Моля, опитайте отново по-късно.";
