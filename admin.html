@@ -14,10 +14,10 @@
 <body>
   <div class="wrapper">
     <header>Админ</header>
-    <form action="#">
+    <form action="php/login.php" method="post">
       <div class="field email">
         <div class="input-area">
-          <input type="text" placeholder="Имейл:">
+          <input type="email" name="email" placeholder="Имейл" required>
           <i class="icon fas fa-envelope"></i>
           <i class="error error-icon fas fa-exclamation-circle"></i>
         </div>
@@ -25,13 +25,13 @@
       </div>
       <div class="field password">
         <div class="input-area">
-          <input type="password" placeholder="Парола:">
+          <input type="password" name="password" placeholder="Парола" required>
           <i class="icon fas fa-lock"></i>
           <i class="error error-icon fas fa-exclamation-circle"></i>
         </div>
         <div class="error error-txt">Въведи парола!</div>
       </div>
-      <input type="submit" value="Login">
+      <input type="submit" value="Влез">
     </form>
   </div>
   <script src="assets/js/admin.js"></script>
