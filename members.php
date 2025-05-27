@@ -35,7 +35,7 @@
 		  <header id="header" class="header d-flex align-items-center sticky-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <a href="index.php" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="assets/img/logo.png" alt="">
         <!-- <h1 class="sitename">Programming Club</h1> -->
@@ -43,17 +43,17 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html#hero">Начало</a></li>
-          <li><a href="index.html#about">Информация</a></li>
-          <li><a href="index.html#advantages">Предимства</a></li>
-          <li><a href="index.html#team">Създатели</a></li>
-          <li><a href="index.html#contact">Контакт</a></li>
-		  <li><a href="persons.html" class="active">Членове</a></li>
+          <li><a href="index.php#hero">Начало</a></li>
+          <li><a href="index.php#about">Информация</a></li>
+          <li><a href="index.php#advantages">Предимства</a></li>
+          <li><a href="index.php#team">Създатели</a></li>
+          <li><a href="index.php#contact">Контакт</a></li>
+		  <li><a href="persons.php" class="active">Членове</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#contact">Запиши се</a>
+      <a class="btn-getstarted" href="index.php#contact">Запиши се</a>
 
     </div>
   </header>
@@ -84,7 +84,7 @@
 						      	<td>Създател</td>
 								<td>Web Developer</td>
 								<td>	
-									<button onclick="window.location.href='spas-kitanov.html'">
+									<button onclick="window.location.href='spas-kitanov.php'">
 									<span style="color: white;">Повече</span>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
