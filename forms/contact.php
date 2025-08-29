@@ -51,7 +51,7 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'programmingclub25@gmail.com';
+    $mail->Username   = 'po.sushtestvo.blg@gmail.com';
     $mail->Password   = 'uwdx bofu vywx yxqk'; // App Password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
@@ -62,8 +62,8 @@ try {
     $mail->isHTML(true);
 
     // Получатели
-    $mail->setFrom('programmingclub25@gmail.com', 'Форма за контакт');
-    $mail->addAddress('programmingclub25@gmail.com');
+    $mail->setFrom('po.sushtestvo.blg@gmail.com', 'Форма за контакт');
+    $mail->addAddress('po.sushtestvo.blg@gmail.com');
     $mail->addReplyTo($email, "$first_name $last_name");
 
     // Имейл съдържание (HTML)

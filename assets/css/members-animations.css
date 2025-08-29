@@ -1,0 +1,44 @@
+/* Fade-in animation for table rows */
+.table tbody tr {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  animation: rowFadeIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+}
+.table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.table tbody tr:nth-child(2) { animation-delay: 0.25s; }
+.table tbody tr:nth-child(3) { animation-delay: 0.4s; }
+.table tbody tr:nth-child(4) { animation-delay: 0.55s; }
+
+@keyframes rowFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Pulse animation for member images on hover */
+.img {
+  transition: transform 0.2s;
+}
+.img:hover {
+  animation: pulseImg 0.5s;
+  transform: scale(1.12);
+}
+@keyframes pulseImg {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1.12); }
+}
+
+/* Премахнато: Button bounce on hover */
+/*
+button:hover {
+  animation: bounceBtn 0.4s;
+}
+@keyframes bounceBtn {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.12); }
+  60% { transform: scale(0.96); }
+  100% { transform: scale(1.05); }
+}
+*/

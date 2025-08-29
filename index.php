@@ -4,13 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Programming Club Blagoevgrad</title>
+  <title>Клуб по програмиране "По същество" | Благоевград</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="https://media.discordapp.net/attachments/1115952100774514759/1375146794522120232/favicon.png?ex=6830a0c0&is=682f4f40&hm=32b9086883a2a9a81efc02ac60285203c04a150241a1500cb69282e37601107e&=&format=webp&quality=lossless&width=64&height=64" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -43,7 +42,7 @@
 
       <a href="index.php" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="assets/img/logo.png" alt="">
+        <img src="assets/logo.png" alt="">
         <!-- <h1 class="sitename">Programming Club</h1> -->
       </a>
 
@@ -51,9 +50,7 @@
         <ul>
           <li><a href="index.php#hero" class="active">Начало</a></li>
           <li><a href="index.php#about">Информация</a></li>
-          <li><a href="index.php#advantages">Предимства</a></li>
           <li><a href="index.php#team">Създатели</a></li>
-          <li><a href="index.php#contact">Контакт</a></li>
 		      <li><a href="members.php">Членове</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -72,8 +69,8 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="fade-up">
-            <h1>Клуб по програмиране Благоевград</h1>
-            <p>Място за вдъхновени млади умове, които искат да творят с код, да се развиват и да оставят следа в обществото.</p>
+            <h1>Клуб по програмиране "По същество"</h1>
+            <p>Клуб по програмиране „По същество“ – Благоевград е общност за млади хора, които учат чрез практика и създават реални проекти с истинска стойност. Тук превръщаме идеите в решения и се развиваме заедно – независимо дали тепърва започваш или вече имаш опит.</p>
             <div class="d-flex">
               <a href="#contact" class="btn-get-started">Запиши се</a>
               <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
@@ -94,7 +91,7 @@
       <div class="container section-title" data-aos="fade-up">
         <span>Информация<br></span>
         <h2>Информация</h2>
-        <p>Programming Club Blagoevgrad е общност от мотивирани младежи с интерес към технологиите и програмирането.</p>
+        <p>Клуб по програмиране "По същество" е общност от мотивирани младежи с интерес към технологиите и програмирането.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -104,7 +101,7 @@
             <img src="assets/img/about.png" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
-            <h3>Programming Club Blagoevgrad</h3>
+            <h3>Клуб по програмиране "По същество"</h3>
             <p class="fst-italic">
               Ние вярваме, че бъдещето е в ръцете на младите хора и искаме да им дадем възможност да развият уменията си чрез реални проекти, сътрудничество и практика. Организираме обучения, уъркшопи и събития, където ученици и студенти могат да:
             </p>
@@ -236,14 +233,13 @@
 
       <div class="container">
 
-        <div class="row gy-5">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-5 justify-content-center">
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
               <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Спас Китанов</h4>
-                <span>Създател | Programming Club</span>
+                <span>Създател | Клуб - "По същество"</span>
                 <div class="social">
                   <a href="https://www.instagram.com/_s.kitanov_/"><i class="bi bi-instagram"></i></a>
                   <a href="https://github.com/SPASKOO"><i class="bi bi-github"></i></a>
@@ -253,12 +249,12 @@
             </div>
           </div><!-- End Team Member -->
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="member">
               <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Бранимир Янчев</h4>
-                <span>Създател | Programming Club</span>
+                <span>Създател | Клуб - "По същество"</span>
                 <div class="social">
                   <a href="https://www.instagram.com/_b.yanchev_/"><i class="bi bi-instagram"></i></a>
                   <a href="https://github.com/BranimirYanchev"><i class="bi bi-github"></i></a>
@@ -267,7 +263,6 @@
               </div>
             </div>
           </div><!-- End Team Member -->
-
         </div>
 
       </div>
@@ -303,7 +298,7 @@
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
                   <h3>Телефон:</h3>
-                  <p>+359 123 456 789</p>
+                  <p>+359 879 320 314</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -311,7 +306,7 @@
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                   <h3>Имейл:</h3>
-                  <p>info@pcb.bg</p>
+                  <p>po.sushtestvo.blg@gmail.com</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -360,7 +355,7 @@
   <footer id="footer" class="footer">
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Programming Club Blagoevgrad</strong> |<span> Всички права запазени!</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Клуб по програмиране "По същество"</strong> |<span> Всички права запазени!</span></p>
       <div class="credits">
       </div>
     </div>

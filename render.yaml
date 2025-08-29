@@ -1,7 +1,0 @@
-# render.yaml
-services:
-  - type: web
-    name: php-contact-form
-    env: docker
-    plan: free
-    autoDeploy: true

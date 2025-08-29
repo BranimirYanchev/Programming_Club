@@ -1,15 +1,12 @@
 <?php
 $host = 'localhost';
-$dbname = 'pcb';       // името на базата
-$username = 'admin';    // смени на 'admin' ако вече създадеш такъв потребител
-$password = 'ADMIN';        // паролата за MySQL root (или за admin)
+$user = 'admin';
+$password = 'ADMIN'; // Добави парола ако имаш
+$database = 'admin_dashboard';
 
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // За тест:
-    // echo "✅ Свързан с базата успешно!";
-} catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
+$conn = new mysqli($host, $user, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
